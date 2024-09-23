@@ -54,24 +54,18 @@ const textColors = [
 let root = document.querySelector(".all-boxes");
 let h1 = document.querySelector("h1");
 
-function handleClick(colorText, e) {
-  if (e.shiftKey) {
-    h1.innerText = colorText;
-    h1.style.backgroundColor = colorText;
-  } else {
-    h1.innerText = "Use Shif Key to change color";
-  }
-}
-
 textColors.forEach((color) => {
   let box = document.createElement("div");
   box.classList.add("color");
+  box.setAttribute("data-color", color);
   box.style.backgroundColor = color;
-
-  box.addEventListener("click", (event) => {
-    console.log(event);
-    handleClick(color, event);
-  });
 
   root.append(box);
 });
+
+function handleClick(e) {
+  let color = e.target.dataset.color;
+  h1.innerText = color;
+  h1.style.backgroundColor = color;
+}
+root.addEventListener("click", handleClick);
