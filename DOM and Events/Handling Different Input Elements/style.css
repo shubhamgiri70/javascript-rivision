@@ -1,0 +1,158 @@
+body {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+
+  min-height: 100vh;
+}
+
+.container {
+  margin: 4rem auto;
+  width: 40%;
+  border-radius: 10px;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blur {
+  filter: blur(3px);
+  transition: filter 0.1s ease;
+}
+
+label {
+  font-size: 1rem;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+input[type="color"],
+input[type="range"] {
+  width: 95%;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+input[type="color"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+}
+
+.colorPicker {
+  display: flex;
+  flex-direction: column;
+}
+
+#colorPicker {
+  width: 10rem;
+  height: 2rem;
+}
+
+#range {
+  width: 90%;
+}
+
+.book-genre {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.book-genre label {
+  margin-right: 1rem;
+}
+
+.terms {
+  margin-bottom: 1rem;
+}
+
+#submit {
+  width: 98%;
+  padding: 0.9rem;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#submit:hover {
+  background: linear-gradient(135deg, #764ba2, #667eea);
+}
+
+.main {
+  position: relative;
+}
+
+.model {
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.model.show {
+  opacity: 1;
+}
+
+.close-btn {
+  padding: 0.5rem 1rem;
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #ff4d4d;
+}
+
+.hidden {
+  display: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 1rem;
+}
