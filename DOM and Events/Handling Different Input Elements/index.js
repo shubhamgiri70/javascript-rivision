@@ -61,7 +61,7 @@ function removeModel() {
   container.classList.remove("blur");
   setTimeout(() => {
     modelEle.classList.add("hidden");
-  }, 500);
+  }, 5000);
 }
 
 form.addEventListener("submit", handleSubmit);
