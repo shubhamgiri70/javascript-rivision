@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 100%;
+  background-color: turquoise;
+}
+
+.container {
+  width: 500px;
+  margin: 2rem auto;
+  background-color: aliceblue;
+  padding: 2rem;
+}
+
+#text {
+  width: 90%;
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.7rem;
+}
+
+li input {
+  margin-right: 1.5rem;
+}
+
+li p {
+  margin-right: 1.5rem;
+}
+
+li span {
+  font-weight: 800;
+  cursor: pointer;
+}
