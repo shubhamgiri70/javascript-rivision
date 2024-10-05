@@ -2,7 +2,7 @@ function main() {
   let input = document.getElementById("text");
   let root = document.querySelector("ul");
 
-  let allTodos = [];
+  let allTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
   function handleInput(event) {
     const value = event.target.value;
@@ -16,6 +16,7 @@ function main() {
       event.target.value = "";
       createUI();
     }
+    localStorage.setItem("todos", JSON.stringify(allTodos));
   }
 
   input.addEventListener("keyup", handleInput);
@@ -29,6 +30,7 @@ function main() {
       checkbox.checked = todo.isDone;
       checkbox.addEventListener("change", () => {
         todo.isDone = !todo.isDone;
+        localStorage.setItem("todos", JSON.stringify(allTodos));
         createUI();
       });
 
@@ -38,6 +40,7 @@ function main() {
       span.innerText = "❌";
       span.addEventListener("click", () => {
         allTodos.splice(index, 1);
+        localStorage.setItem("todos", JSON.stringify(allTodos));
         createUI();
       });
 
