@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "My Chrome Extension",
+  "version": "1.0",
+  "description": "A simple Chrome extension example.",
+  "author": "Your Name",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
