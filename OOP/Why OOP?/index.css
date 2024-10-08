@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+.container {
+  width: 30%;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.container ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style: none;
+}
+
+li img {
+  width: 8rem;
+  height: 8rem;
+}
+
+button {
+  padding: 0.6rem;
+}
