@@ -251,3 +251,128 @@ function loop(start, test, update, body) {
 // The function reduce takes an array and reduces the elements to a single value. For example it can sum all the numbers, multiply them, or any operation that you can put into a function.
 // Here's how it works. The function has an "accumulator value" which starts as the initialValue and accumulates the output of each loop. The array is iterated over, passing the accumulator and the next array element as arguments to the callback. The callback's return value becomes the new accumulator value. The next loop executes with this new accumulator value. In the example above, the accumulator begins at 0. add(0,4) is called. The accumulator's value is now 4. Then add(4, 1) to make it 5. Finally add(5, 3) brings it to 8, which is returned.
 
+// Construct a function objOfMatches that accepts two arrays and a callback. objOfMatches will build an object and return it. To build the object, objOfMatches will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array. If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
+
+function objOfMatches(arr1, arr2, cb) {
+  return arr1.reduce((acc, cv, index) => {
+    if (arr2[index] === cb(cv)) {
+      acc[cv] = arr2[index];
+    }
+    return acc;
+  }, {});
+}
+
+// TEST
+console.log(
+  objOfMatches(
+    ["hi", "howdy", "bye", "later", "hello"],
+    ["HI", "Howdy", "BYE", "LATER", "hello"],
+    function (str) {
+      return str.toUpperCase();
+    }
+  )
+); // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
+
+// Construct a function multiMap that will accept two arrays: an array of values and an array of callbacks. multiMap will return an object whose keys match the elements in the array of values. The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
+
+function multiMap(arrVal, arrCB) {
+  return arrVal.reduce((acc, cv) => {
+    let valueArr = arrCB.map((fn) => fn(cv));
+
+    acc[cv] = valueArr;
+    return acc;
+  }, {});
+}
+
+// TEST
+console.log(
+  multiMap(
+    ["catfood", "glue", "beer"],
+    [
+      function (str) {
+        return str.toUpperCase();
+      },
+      function (str) {
+        return str[0].toUpperCase() + str.slice(1).toLowerCase();
+      },
+      function (str) {
+        return str + str;
+      },
+    ]
+  )
+); // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
+
+// Create a function named censor which accepts two parameter (fromWord, toWord) and returns a function when called.
+// The returned function accepts a sentence. If the sentence contains the fromWord it should be replaced with toWord. Finally when the returned function is called it should return the new sentence.
+
+function censor(fromWord, toWord) {
+  return function (sentence) {
+    if (sentence.includes(fromWord)) {
+      return sentence.replace(fromWord, toWord);
+    }
+  };
+}
+
+let censorSentence = censor("World", "Sam");
+censorSentence("Hello World"); // Hello Sam
+
+// let censorQuote = censor("die", "live");
+// censorQuote(`all men must die`); // all men must live
+
+// Create a function named multipleCensor which does not accept any parameter and returns a function.
+// The returned function either accepts two parameter or one parameter.
+
+// When you pass two parameter it adds the words to an array something like 'World', 'Sam' and does not return anything.
+// When you pass one parameter it should return a string with words replaced with the required words.
+
+function multipleCensor() {
+  let arr = [];
+  return function (...str) {
+    if (str.length === 1) {
+      let quote = str[0];
+      arr.forEach((pair) => {
+        quote = quote.replace(pair[0], pair[1]);
+      });
+      return str;
+    } else if (str.length === 2) {
+      arr.push(str);
+    }
+  };
+}
+
+let censorQuote = multipleCensor();
+censorQuote("forget", "remember"); // two parameter no return
+censorQuote("never", "always"); // two parameter no return
+censorQuote("hurt you", "love you"); // two parameter no return
+
+censorQuote(
+  "Never forget what you are. The rest of the world will not. Wear it like armor, and it can never be used to hurt you."
+);
+
+// Returns: "Never remember what you are. The rest of the world will not. Wear it like armor, and it can always be used to love you."
+
+// Write a function that accepts a callback function and return another function. But the function should only be called once.
+
+function main(cb) {
+  let counter = 0;
+  return function () {
+    if (counter < 1) {
+      counter++;
+      cb();
+    }
+  };
+}
+
+// Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. You can only use reduce method to do this.
+
+function intersection(...arr) {
+  return arr.reduce((acc, cv) => {
+    acc = acc.filter((ele) => cv.includes(ele));
+    return acc;
+  });
+}
+
+// Test
+console.log(
+  intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
+); // should log: [5, 15]
